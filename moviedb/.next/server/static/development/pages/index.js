@@ -138,7 +138,8 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 const MovieItem = ({
-  movies
+  movies,
+  onMovieSelect
 }) => {
   const URL_POSTER = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
 
@@ -146,7 +147,7 @@ const MovieItem = ({
     return __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 11
+        lineNumber: 12
       },
       __self: undefined
     }, "Loading...");
@@ -154,15 +155,16 @@ const MovieItem = ({
 
   return __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     sm: "3",
+    onClick: () => onMovieSelect(movies),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 16
     },
     __self: undefined
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 17
     },
     __self: undefined
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardImg"], {
@@ -173,31 +175,31 @@ const MovieItem = ({
     alt: "Card image cap",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     },
     __self: undefined
   }), __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 19
     },
     __self: undefined
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     },
     __self: undefined
   }, __jsx("strong", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     },
     __self: undefined
   }, movies.title)), __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardText"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 21
     },
     __self: undefined
   }, movies.overview.substring(0, 50), "..."))));
@@ -234,7 +236,15 @@ class MovieList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     super(...args);
 
     _defineProperty(this, "state", {
-      movies: []
+      movies: [],
+      selectedMovie: null
+    });
+
+    _defineProperty(this, "onMovieSelect", movie => {
+      console.log(movie);
+      this.setState({
+        selectedMovie: movie
+      });
     });
 
     _defineProperty(this, "renderList", () => {
@@ -242,7 +252,7 @@ class MovieList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
         return __jsx("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 19
+            lineNumber: 24
           },
           __self: this
         }, "Loading");
@@ -250,11 +260,12 @@ class MovieList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
       return this.state.movies.map((movie, index) => {
         return __jsx(_MovieItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          onMovieSelect: this.onMovieSelect,
           movies: movie,
           key: index,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 25
+            lineNumber: 30
           },
           __self: this
         });
@@ -274,20 +285,20 @@ class MovieList extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     return __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 35
+        lineNumber: 40
       },
       __self: this
     }, __jsx("h2", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 36
+        lineNumber: 41
       },
       __self: this
     }, "Daftar Movie"), __jsx("div", {
       className: "row",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 37
+        lineNumber: 42
       },
       __self: this
     }, this.renderList()));

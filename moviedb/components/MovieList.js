@@ -5,7 +5,8 @@ import MovieItem from './MovieItem'
 class MovieList extends React.Component{
 
     state = {
-        movies: []
+        movies: [],
+        selectedMovie: null
     }
     async componentDidMount() {
         const response = await MovieDB.get('/discover/movie')
@@ -14,6 +15,10 @@ class MovieList extends React.Component{
         this.setState({ movies: response.data.results })
     }
 
+    onMovieSelect = (movie) => {
+        console.log(movie)
+        this.setState({ selectedMovie: movie})
+    }
     renderList = () =>{
         if (!this.state.movies){
             return <div>Loading</div>
@@ -22,7 +27,7 @@ class MovieList extends React.Component{
           this.state.movies.map((movie, index)=>{
             return (
 
-                    <MovieItem movies={movie} key={index}/>
+                    <MovieItem onMovieSelect={this.onMovieSelect} movies={movie} key={index} />
 
             )
 

@@ -44,14 +44,15 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var MovieItem = function MovieItem(_ref) {
-  var movies = _ref.movies;
+  var movies = _ref.movies,
+      onMovieSelect = _ref.onMovieSelect;
   var URL_POSTER = "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
 
   if (!movies) {
     return __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 11
+        lineNumber: 12
       },
       __self: this
     }, "Loading...");
@@ -59,15 +60,18 @@ var MovieItem = function MovieItem(_ref) {
 
   return __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
     sm: "3",
+    onClick: function onClick() {
+      return onMovieSelect(movies);
+    },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 16
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 17
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardImg"], {
@@ -78,31 +82,31 @@ var MovieItem = function MovieItem(_ref) {
     alt: "Card image cap",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     },
     __self: this
   }), __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 19
     },
     __self: this
   }, __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     },
     __self: this
   }, __jsx("strong", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     },
     __self: this
   }, movies.title)), __jsx(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardText"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 21
     },
     __self: this
   }, movies.overview.substring(0, 50), "..."))));
@@ -165,7 +169,16 @@ var MovieList = /*#__PURE__*/function (_React$Component) {
     _this = Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__["default"])(MovieList)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "state", {
-      movies: []
+      movies: [],
+      selectedMovie: null
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "onMovieSelect", function (movie) {
+      console.log(movie);
+
+      _this.setState({
+        selectedMovie: movie
+      });
     });
 
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_5__["default"])(_this), "renderList", function () {
@@ -173,7 +186,7 @@ var MovieList = /*#__PURE__*/function (_React$Component) {
         return __jsx("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 19
+            lineNumber: 24
           },
           __self: this
         }, "Loading");
@@ -181,11 +194,12 @@ var MovieList = /*#__PURE__*/function (_React$Component) {
 
       return _this.state.movies.map(function (movie, index) {
         return __jsx(_MovieItem__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          onMovieSelect: _this.onMovieSelect,
           movies: movie,
           key: index,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 25
+            lineNumber: 30
           },
           __self: this
         });
@@ -226,20 +240,20 @@ var MovieList = /*#__PURE__*/function (_React$Component) {
       return __jsx("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 40
         },
         __self: this
       }, __jsx("h2", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 36
+          lineNumber: 41
         },
         __self: this
       }, "Daftar Movie"), __jsx("div", {
         className: "row",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 42
         },
         __self: this
       }, this.renderList()));

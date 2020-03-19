@@ -5,14 +5,15 @@ import {
 } from 'reactstrap';
 
 
-const MovieItem = ({movies}) => {
+const MovieItem = ({movies, onMovieSelect}) => {
     const URL_POSTER = "https://image.tmdb.org/t/p/w600_and_h900_bestv2"
+
     if (!movies) {
         return <div>Loading...</div>
     }
     return (
 
-        <Col sm="3">
+        <Col sm="3" onClick={() => onMovieSelect(movies)}>
             <Card>
                 <CardImg top width="100%" height="200" src={URL_POSTER + movies.poster_path} alt="Card image cap"/>
                 <CardBody>
@@ -21,7 +22,6 @@ const MovieItem = ({movies}) => {
                 </CardBody>
             </Card>
         </Col>
-
 
     )
 }
